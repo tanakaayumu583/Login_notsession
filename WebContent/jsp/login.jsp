@@ -10,7 +10,17 @@ try{
 	login_status = request.getParameter("status");
 	}
 }catch(Exception e){}
+
+
+if(login_status.equals(logout)){
+	//セッション削除の動作を記述
+	//session.getAttribute("authentication_key");
+	//session.getAttribute("password");
+	
+	//jsp上でのセッション削除のやり方がわからなかったのでセッション削除はできていないです。
+}
 %>
+<%@include file="../../authentication.jsp"%>
 <%@include file="../header.html"%>
 	<container>
 	<h2>ログイン画面</h2>
@@ -25,11 +35,17 @@ try{
 			<input type="text" name="user_name" placeholder="メールアドレス"
 			<%if(request.getParameter("login_id") != null){%>
 			value="<%=request.getParameter("login_id") %>"
-			<% }%>
+			<% }else if(session_username != null){%>
+			value="<%=session_username %>"
+			<%} %>
 			>
 		</p>
 		<p>
-			<input type="password" name="password" placeholder="パスワード">
+			<input type="password" name="password" placeholder="パスワード"
+			<% if(session_password != null){%>
+			value="<%=session_password %>"
+			<%} %>
+			>
 		</p>
 		<div class="button"><input id="resist"  type="submit" value="ログイン"></div>
 		<p><a href="register.jsp">会員登録が済んでいない人はこちら</a></p>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import jp.co.aforce.bean.Product;
 import jp.co.aforce.dao.ProductDAO;
@@ -26,6 +27,7 @@ public class Login extends HttpServlet {
 		Page.header(out);
 
 		try {
+			
 			String user_name = request.getParameter("user_name");
 			String password = request.getParameter("password");
 			
@@ -39,12 +41,25 @@ public class Login extends HttpServlet {
 					Product pd = new Product();
 					pd.setName(user_name);
 					
-					request.setAttribute("product", pd);
+					//ログイン情報保持のためセッションスタート
+					HttpSession session = request.getSession();
+//					//ランダムキーの生成
+//					UUID uuid = UUID.randomUUID();
+//				    String authentication_key = uuid.toString();
+//				    //ランダムキーとユーザ名をセットで格納
+//				    List<String> id_and_key = new ArrayList<String>();
+//				    id_and_key.add(user_name);
+//				    id_and_key.add(authentication_key);	
+					String id_and_key = user_name;
+					session.setAttribute("authentication_key",id_and_key );
+					session.setAttribute("password",password );
 					
+					
+					
+					request.setAttribute("product", pd);
 					request.getRequestDispatcher("../jsp/mymenu.jsp")
 					.forward(request,response);
-					
-//					response.sendRedirect("../jsp/mymenu.jsp");
+
 				}else {
 					out.println("ログイン失敗");
 					request.getRequestDispatcher("../jsp/login.jsp?status=fail&login_id="+user_name)
