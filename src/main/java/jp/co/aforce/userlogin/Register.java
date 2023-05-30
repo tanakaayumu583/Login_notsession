@@ -2,6 +2,7 @@ package jp.co.aforce.userlogin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,12 @@ public class Register extends HttpServlet {
 //			List<Product> list = dao.search(user_name);
 			
 			//nameが重複していないかの検査
-			
+			List<Product> list = dao.search(user_name);
+			if(list.size()>0) {
+				out.println("重複しているよ");
+				request.getRequestDispatcher("../jsp/register.jsp?status=fail")
+				.forward(request,response);
+			}
 			//登録処理
 			Product p = new Product();
 			p.setName(user_name);
