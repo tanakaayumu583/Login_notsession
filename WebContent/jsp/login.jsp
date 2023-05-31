@@ -47,7 +47,7 @@ try{
 			<%} %>
 			>
 		</p>
-		<p>パスワードが自動保管されているされているのにログインできないときは<br>
+		<p style="font-size:7px;">パスワードが自動保管されているされているのにログインできないときは<br>
 		パスワードを手打ちしてください。(セッション削除機能が完了していないため)</p>
 		<div class="button"><input id="resist"  type="submit" value="ログイン"></div>
 		<p><a href="register.jsp">会員登録が済んでいない人はこちら</a></p>
