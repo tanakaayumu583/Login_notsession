@@ -3,7 +3,7 @@
 <%@page import="jp.co.aforce.bean.Product"%>
 <%-- 画面遷移先のURLを入力 --%>
 <%-- String url_name = "http://localhost:8080/Login/jsp/individual_page.jsp"; --%>
-<% String url_name = "http://localhost:8080/Login/jsp/individual1.jsp"; %>
+<% String url_name = "/Login/jsp/individual1.jsp"; %>
 <% Product p = (Product) request.getAttribute("product");%>
 <%@include file="../../authentication.jsp"%>
 <%@include file="../../header.html"%>

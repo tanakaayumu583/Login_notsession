@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
 //				    id_and_key.add(authentication_key);	
 					String id_and_key = user_name;
 					session.setAttribute("authentication_key",id_and_key );
-					session.setAttribute("password",password );
+					session.setAttribute("password", password );
 					
 					
 					
